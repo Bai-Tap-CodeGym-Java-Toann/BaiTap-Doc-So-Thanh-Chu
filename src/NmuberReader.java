@@ -6,7 +6,8 @@ public class NmuberReader {
         while (1 > 0) {
             System.out.print("nhập số cần đọc (0-999): ");
             String input = sc.nextLine();
-            while (!(input.matches("^[1-9]?[0-9]?[0-9]$"))) {
+            while (!(input.matches("^[1-9][0-9]?[0-9]$") ||
+                    input.matches("^[0-9]$"))) {
                 System.out.println("không hợp lệ!");
                 System.out.print("nhập số cần đọc (0-999): ");
                 input = sc.nextLine();
@@ -14,7 +15,11 @@ public class NmuberReader {
             String[] inputRay = input.split("");
             switch (inputRay.length - 1) {
                 case 1:
-                    System.out.println(tenDown(inputRay[1]));
+                    if (inputRay[1].equals("0")) {
+                        System.out.println("zero");
+                    } else {
+                        System.out.println(tenDown(inputRay[1]));
+                    }
                     break;
                 case 2:
                     System.out.println(tenUp(inputRay[1], tenDown(inputRay[2])));
@@ -24,7 +29,7 @@ public class NmuberReader {
                         System.out.println(hunredUp(inputRay[1]));
                     } else {
                         System.out.print(hunredUp(inputRay[1]));
-                        System.out.print(" and " + tenUp(inputRay[2], tenDown(inputRay[3]) + "\n"));
+                        System.out.print(" and "+tenUp(inputRay[2], tenDown(inputRay[3])) + "\n");
                     }
             }
 
@@ -62,7 +67,7 @@ public class NmuberReader {
     private static String tenUp(String number, String previous) {
         switch (number) {
             case "0":
-                return " ";
+                return previous;
             case "1":
                 switch (previous) {
                     case "":
