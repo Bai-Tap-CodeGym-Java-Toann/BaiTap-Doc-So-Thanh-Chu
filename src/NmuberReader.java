@@ -4,14 +4,13 @@ public class NmuberReader {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (1 > 0) {
-            System.out.println("nhập số cần đọc (0-999): ");
+            System.out.print("nhập số cần đọc (0-999): ");
             String input = sc.nextLine();
             while (!(input.matches("^[1-9]?[0-9]?[0-9]$"))) {
                 System.out.println("không hợp lệ!");
                 System.out.print("nhập số cần đọc (0-999): ");
                 input = sc.nextLine();
             }
-            System.out.println(input);
             String[] inputRay = input.split("");
             switch (inputRay.length - 1) {
                 case 1:
@@ -24,7 +23,6 @@ public class NmuberReader {
                     if ((inputRay[2].equals("0")) && (inputRay[3].equals("0"))) {
                         System.out.println(hunredUp(inputRay[1]));
                     } else {
-                        System.out.println(inputRay[1]);
                         System.out.print(hunredUp(inputRay[1]));
                         System.out.print(" and " + tenUp(inputRay[2], tenDown(inputRay[3]) + "\n"));
                     }
